@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"../config"
 	"./model"
 	"./handler"
@@ -42,8 +44,9 @@ func (a *App) SetUpRouter(){
 			Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
-			Handler(route.HandlerFunc)
+			Handler(prometheus.InstrumentHandler(route.Name,route.HandlerFunc))
 	}
+	a.Router.Handle("/metrics", promhttp.Handler())
 }
 
 
@@ -82,6 +85,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) GetAllProducts(w http.ResponseWriter, r *http.Request) {
+
+	//prometheus.InstrumentHandler("webkv", s)
 	handler.GetAllProducts(a.DB, w, r)
 }
 
