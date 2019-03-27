@@ -41,11 +41,6 @@ func (a *App) SetUpRouter(){
 
 	for _, route := range routes {
 		a.Router.
-
-
-
-
-
 			Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
@@ -65,7 +60,7 @@ func (app *App) Initialize(config *config.Config) {
 		config.DB.Name,
 		config.DB.Charset)
 
-    //println(dbURI)
+    //println(config.DB.Dialect)
 	db, err := gorm.Open(config.DB.Dialect, dbURI)
 
 	if err != nil {
