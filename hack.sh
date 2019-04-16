@@ -7,4 +7,4 @@ sleep 10
 export ENVIRONMENT=DEV
 go run main.go
 
-#curl--header "Content-Type: application/json" --request POST --data '{"name":"product2","price": "20.15" }' http://localhost:8081/products
+#curl --header "Content-Type: application/json" --request POST --data '{"name":"product2","price": "20.15" }' http://localhost:8081/product
