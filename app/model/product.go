@@ -11,7 +11,7 @@ import (
 type Product struct {
 	gorm.Model
 	Name         string `gorm:"unique" json:"name"`
-	Decscription string `gorm:type:varchar(100) json:"description"`
+	Description  string `gorm:type:varchar(100) json:"description"`
 	Price        float64 `gorm:"not null" json:"price,string"`  //canUse json.Number as type too.
 }
 
