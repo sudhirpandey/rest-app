@@ -4,6 +4,7 @@ import (
     "fmt"
     "log"
 	"net/http"
+	"github.com/rs/cors"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	"github.com/prometheus/client_golang/prometheus"
@@ -74,8 +75,13 @@ func (app *App) Initialize(config *config.Config) {
 
 //listen and serve the app with endpoints from the router
 func (app *App) Run(host string) {
+
+  c := cors.New(cors.Options{
+      AllowedOrigins: []string{"*"}, // All origins
+      AllowedMethods: []string{"GET"}, // Allowing only get, just an example
+  })
 	println("Server up and listening....")
-	log.Fatal(http.ListenAndServe(host, app.Router))
+	log.Fatal(http.ListenAndServe(host, c.Handler(app.Router)))
 }
 
 //List of routes functions
