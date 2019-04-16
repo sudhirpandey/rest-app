@@ -5,6 +5,6 @@ sudo docker run --name test-mysql -p3306:3306 -e MYSQL_ROOT_PASSWORD=password -e
 sleep 10
 
 export ENVIRONMENT=DEV
-go run main.go
+go run rest-app.go
 
 #curl --header "Content-Type: application/json" --request POST --data '{"name":"product2","price": "20.15" }' http://localhost:8081/product
