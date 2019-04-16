@@ -1,5 +1,5 @@
 ---
 username: testuser
 password: testpasswd
-host: 127.0.0.1
+host: localhost
 name: test
