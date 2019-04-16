@@ -60,7 +60,7 @@ func (app *App) Initialize(config *config.Config) {
 		config.DB.Name,
 		config.DB.Charset)
 
-    //println(config.DB.Dialect)
+	// println(config.DB.Host)
 	db, err := gorm.Open(config.DB.Dialect, dbURI)
 
 	if err != nil {
