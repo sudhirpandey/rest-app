@@ -9,7 +9,7 @@ spec:
       name: product-api:latest
   source:
     git:
-      uri: https://github.com:sudhirpandey/rest-app.git 
+      uri: https://github.com/sudhirpandey/rest-app.git 
     type: Git
   strategy:
     dockerStrategy:
