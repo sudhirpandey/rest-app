@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"github.com/jinzhu/gorm"
 	"github.com/gorilla/mux"
-    "../model"
+  "rest-app/app/model"
 )
 
 

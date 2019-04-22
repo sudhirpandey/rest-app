@@ -1,19 +1,13 @@
-# FROM registry.access.redhat.com/devtools/go-toolset-rhel7 
-FROM scratch
-
-# Copy everything from the current directory to the PWD(Present Working Directory) inside the container
+FROM registry.access.redhat.com/devtools/go-toolset-rhel7
+RUN /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/rs/cors && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/gorilla/mux && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/jinzhu/gorm  && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/prometheus/client_golang/prometheus && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/prometheus/client_golang/prometheus/promhttp && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/jinzhu/gorm && \
+    /opt/rh/go-toolset-1.11/root/usr/bin/go get github.com/go-sql-driver/mysql
+RUN pwd 
 COPY . .
-
-# Update the DB host with the IP of your mysql container
-ENV ENVIRONMENT=PROD
-ENV DB_HOST=172.17.0.2
-ENV DB_USERNAME=testuser
-ENV DB_PASSWORD=testpasswd
-ENV DB_NAME=test
-
-# Expose port 8081
-EXPOSE 8081
-
-# Run the executable
-CMD ["./rest-app"]
-
+RUN cd /opt/app-root/src 
+RUN ls /opt/app-root/src
+RUN CGO_ENABLED=0 GOOS=linux /opt/rh/go-toolset-1.11/root/usr/bin/go build -a -ldflags '-extldflags "-static"' .

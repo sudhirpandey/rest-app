@@ -1,8 +1,8 @@
 package main
 
 import (
-    "./app"
-    "./config"
+    "rest-app/app"
+    "rest-app/config"
 )
 
 func main(){

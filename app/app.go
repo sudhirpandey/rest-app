@@ -9,9 +9,9 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"../config"
-	"./model"
-	"./handler"
+	"rest-app/config"
+	"rest-app/app/model"
+	"rest-app/app/handler"
 )
 
 type App struct {
