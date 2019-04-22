@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: product-api-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: product-api:latest
+  source:
+    git:
+      uri: https://github.com:sudhirpandey/rest-app.git 
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: openshift-configs/Dockerfile
+
